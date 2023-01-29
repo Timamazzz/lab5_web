@@ -1,11 +1,11 @@
 <?php
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+$id = $_GET['id'] ?? null;
 $username = null;
 $email = null;
 $isAdmin = null;
 $isRedact = ($id != null);
 
-include_once 'config.php';
+require_once 'config.php';
 
 if(!$isRedact)
     $title = 'Add user';

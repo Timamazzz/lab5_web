@@ -1,4 +1,5 @@
 <?php
+const ADMIN = 'ADMIN_MESSAGES';
 const FLASH = 'FLASH_MESSAGES';
 const FLASH_ERROR = 'error';
 const FLASH_SUCCESS = 'success';

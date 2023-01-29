@@ -5,5 +5,5 @@ try {
     exit("Error: " . $e->getMessage());
 }
 include_once ('Flash.php');
-const ADMIN = 'ADMIN_MESSAGES';
+
 
