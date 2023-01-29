@@ -4,7 +4,7 @@ $title = 'Auth';
 require 'src/components/header/header.php';
 require 'src/components/footer/footer.php';
 $error = null;
-    include('config.php');
+include_once ('config.php');
     if (isset($_POST['login'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];

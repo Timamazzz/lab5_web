@@ -4,4 +4,6 @@ try {
 } catch (PDOException $e) {
     exit("Error: " . $e->getMessage());
 }
-require_once ('Flash.php');
+include_once ('Flash.php');
+const ADMIN = 'ADMIN_MESSAGES';
+

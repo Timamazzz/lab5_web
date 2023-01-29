@@ -2,12 +2,13 @@
 $title = 'mails';
 require 'src/components/header/header.php';
 require 'src/components/footer/footer.php';
-include 'config.php';
+include_once ('config.php');
 
 $mails = $connection->prepare('SELECT * from mails');
 $mails->execute();
 
 if (isset($_POST['add']) || isset($_POST['redact'])) {
+    $_POST[ADMIN]['isSend'] = 'yes';
     require('sending.php');
     $mails = $connection->prepare('SELECT * from mails');
     $mails->execute();
@@ -21,6 +22,7 @@ if (isset($_POST['delete'])) {
 
     $mails = $connection->prepare('SELECT * from mails');
     $mails->execute();
+    flash('delete_mess', 'Сообщение успешно удалено', FLASH_SUCCESS);
 }
 
 ?>
@@ -37,6 +39,7 @@ if (isset($_POST['delete'])) {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center">
+    <?php flash(); ?>
     <?php
     session_status() === PHP_SESSION_ACTIVE || session_start();
 

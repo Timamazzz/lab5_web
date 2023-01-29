@@ -5,7 +5,7 @@ $email = null;
 $isAdmin = null;
 $isRedact = ($id != null);
 
-include 'config.php';
+include_once 'config.php';
 
 if(!$isRedact)
     $title = 'Add user';
@@ -42,7 +42,7 @@ if (isset($_POST['add'])) {
         $query->bindParam("isAdmin", $isAdmin, PDO::PARAM_BOOL);
         $result = $query->execute();
         if ($result) {
-            echo '<p class="success">Регистрация прошла успешно!</p>';
+            flash('user_add', 'Регистрация прошла успешно!', FLASH_SUCCESS);
             header('Location: http://localhost/aniuwu/users.php ');
         } else {
             echo '<p class="error">Неверные данные!</p>';
@@ -77,6 +77,7 @@ if (isset($_POST['redact'])) {
         $query->bindParam("isAdmin", $isAdmin, PDO::PARAM_BOOL);
         $query->execute();
 
+        flash('user_redact', 'Пользователь успешно отредактирован', FLASH_SUCCESS);
         header('Location: http://localhost/aniuwu/users.php ');
     }
 }

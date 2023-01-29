@@ -3,7 +3,7 @@ $title = 'anime';
 require 'src/components/header/header.php';
 require 'src/components/footer/footer.php';
 
-include('config.php');
+include_once ('config.php');
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
 $query = $connection->prepare("SELECT * FROM animes WHERE id=:id");

@@ -2,7 +2,7 @@
 $title = 'Animes';
 require 'src/components/header/header.php';
 require 'src/components/footer/footer.php';
-include 'config.php';
+include_once 'config.php';
 
 $users = $connection->prepare('SELECT * from users');
 $users->execute();
@@ -15,6 +15,7 @@ if (isset($_POST['delete'])) {
 
     $users = $connection->prepare('SELECT * from users');
     $users->execute();
+    flash('user_delete', 'Пользователь успешно удален', FLASH_SUCCESS);
 }
 
 ?>
@@ -31,6 +32,7 @@ if (isset($_POST['delete'])) {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center">
+    <?php flash(); ?>
     <?php
     session_status() === PHP_SESSION_ACTIVE || session_start();
 

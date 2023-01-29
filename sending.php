@@ -34,12 +34,12 @@
         $query->execute();
 
         flash('sending', 'Сообщение успешно отправлено', FLASH_SUCCESS);
-        header('Location: http://localhost/aniuwu/');
- 	}
+    }
  	else {
         flash('sending', 'При отправке сообщения возникла ошибка', FLASH_ERROR);
+    }
+    if(!isset($_POST[ADMIN])) {
+        unset($_POST[ADMIN]);
         header('Location: http://localhost/aniuwu/');
     }
 
-
-?>

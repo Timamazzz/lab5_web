@@ -4,7 +4,7 @@ $Name = null;
 $Description = null;
 $Image = null;
 $isRedact = ($id != null);
-include 'config.php';
+include_once ('config.php');
 if(!$isRedact)
     $title = 'Add anime';
 else {
@@ -48,6 +48,7 @@ if (isset($_POST['redact'])) {
 
         $animes = $connection->prepare('SELECT * from animes');
         $animes->execute();
+        flash('anime_redact', 'Аниме успешно отредактировано', FLASH_SUCCESS);
         header('Location: http://localhost/aniuwu/animes.php ');
     }
 }
@@ -79,6 +80,7 @@ if (isset($_POST['add'])) {
 
         $animes = $connection->prepare('SELECT * from animes');
         $animes->execute();
+        flash('anime_add', 'Аниме успешно созданно', FLASH_SUCCESS);
         header('Location: http://localhost/aniuwu/animes.php ');
     }
 }

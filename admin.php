@@ -2,8 +2,7 @@
 $title = 'Admin';
 require 'src/components/header/header.php';
 require 'src/components/footer/footer.php';
-include 'config.php';
-
+include_once ('config.php');
 $query = $connection->prepare('SELECT * from animes');
 $query->execute();
 ?>

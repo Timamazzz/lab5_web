@@ -6,7 +6,7 @@ require 'src/components/footer/footer.php';
 $success = null;
 $error = null;
 session_status() === PHP_SESSION_ACTIVE ? null : session_start();
-include('config.php');
+include_once ('config.php');
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];

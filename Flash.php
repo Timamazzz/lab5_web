@@ -44,14 +44,31 @@ function display_flash_message(string $name)
     echo format_flash_message($flash_message);
 }
 
+function display_all_flash_messages()
+{
+    if (!isset($_SESSION[FLASH])) {
+        return;
+    }
+
+    // get flash messages
+    $flash_messages = $_SESSION[FLASH];
+
+    // remove all the flash messages
+    unset($_SESSION[FLASH]);
+
+    // show all flash messages
+    foreach ($flash_messages as $flash_message) {
+        echo format_flash_message($flash_message);
+    }
+}
+
 function flash(string $name = '', string $message = '', string $type = '')
 {
     if ($name !== '' && $message !== '' && $type !== '') {
         create_flash_message($name, $message, $type);
-    }
-
-    if ($name !== '' && $message == '' && $type == ''){
+    } elseif ($name !== '' && $message === '' && $type === '') {
         display_flash_message($name);
+    } elseif ($name === '' && $message === '' && $type === '') {
+        display_all_flash_messages();
     }
-
 }
