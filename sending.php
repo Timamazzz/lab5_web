@@ -32,6 +32,8 @@
         $query->bindParam("message", $massage, PDO::PARAM_STR);
 
         $query->execute();
+
+        header('Location: http://localhost/aniuwu/');
  	}
  	else {
         echo "<h3 style='color: white'>При отправке сообщения возникла ошибка</h3sty>";
