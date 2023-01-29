@@ -7,9 +7,22 @@ include 'config.php';
 
 $query = $connection->prepare('SELECT * from animes');
 $query->execute();
+
+
 ?>
 
-<section class="section">
+<section style="height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    background-color: #333;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;">
+    <?php flash('sending'); ?>
     <div class="cards_list">
         <div class="card__menu">
             <?php while ($anime = $query->fetch(PDO::FETCH_ASSOC)) {

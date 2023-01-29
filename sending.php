@@ -33,10 +33,12 @@
 
         $query->execute();
 
+        flash('sending', 'Сообщение успешно отправлено', FLASH_SUCCESS);
         header('Location: http://localhost/aniuwu/');
  	}
  	else {
-        echo "<h3 style='color: white'>При отправке сообщения возникла ошибка</h3sty>";
+        flash('sending', 'При отправке сообщения возникла ошибка', FLASH_ERROR);
+        header('Location: http://localhost/aniuwu/');
     }
 
 
