@@ -26,7 +26,6 @@
     $headers = "From: $from\r\nReply-to: $from\r\nContent-type:text/html; charset=urf-8\r\n";
 
     if(mail($to, $subject, $mas, $headers)){
-        echo "<h3 style='color: white'>Сообщение отправлено</h3>";
         $query = $connection->prepare("INSERT INTO mails(name, email, message) Values(:name, :email, :message)");
         $query->bindParam("name", $name, PDO::PARAM_STR);
         $query->bindParam("email", $email, PDO::PARAM_STR);

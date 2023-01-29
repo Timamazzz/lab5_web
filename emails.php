@@ -1,5 +1,5 @@
 <?php
-$title = 'Animes';
+$title = 'mails';
 require 'src/components/header/header.php';
 require 'src/components/footer/footer.php';
 include 'config.php';
@@ -52,46 +52,39 @@ if (isset($_POST['delete'])) {
     }
 
     ?>
-    <form method="post" action="" style="width: 30%; display: flex; align-items: center; justify-content: center; flex-direction: row">
-        <div style="display: flex; flex-direction: column">
-            <label style="color: white">name</label>
-            <input type="text" name="name"/>
-        </div>
-        <div style="display: flex; flex-direction: column">
-            <label style="color: white">email</label>
-            <input type="email" name="email"/>
-        </div>
-        <div style="display: flex; flex-direction: column">
-            <label style="color: white">message</label>
-            <input type="text" name="massage"/>
-        </div>
-        <button type="submit" name="add" value="add" action="sending.php">Добавить</button>
-    </form>
-
-    <?php while ($mail = $mails->fetch(PDO::FETCH_ASSOC)) {
-        echo '    
-                <form method="post" action="" style="width: 30%; display: flex; align-items: center; justify-content: center; flex-direction: row">
-                    <div style="display: flex; flex-direction: column">
-                        <label style="color: white">id</label>
-                        <label style="color: white">'.$mail['id'].'</label>
-                        <input type="hidden" name="id" value="'.$mail['id'].'" />
-                    </div>
-                    <div style="display: flex; flex-direction: column">
-                        <label style="color: white">name</label>
-                        <input type="text" name="name" value="'.$mail['name'].'"/>
-                    </div>
-                    <div style="display: flex; flex-direction: column">
-                        <label style="color: white">email</label>
-                        <input type="email" name="email" value="'.$mail['email'].'"/>
-                    </div>
-                    <div style="display: flex; flex-direction: column">
-                        <label style="color: white">message</label>
-                        <input type="text" name="massage" value="'.$mail['message'].'"/>
-                    </div>
-                    <button type="submit" name="redact" value="redact">Отправить еще раз</button>
-                    <button type="submit" name="delete" value="delete">Удалить</button>
-    </form>
-               ';
-    }?>
-
+    <div style="display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;">
+        <h1 style="color: white">Письма</h1>
+    </div>
+    <table cellpadding="5px" cellspacing="5px">
+        <tr>
+            <th style="color: white">id</th>
+            <th style="color: white">name</th>
+            <th style="color: white">email</th>
+            <th style="color: white">message</th>
+        </tr>
+        <?php
+        while ($mail = $mails->fetch(PDO::FETCH_ASSOC)) {
+            echo '
+                    <tr>
+                        <td style="color:white;">'.$mail['id'].'</td>
+                        <td style="color:white;">'.$mail['name'].'</td>
+                        <td style="color:white;">'.$mail['email'].'</td>
+                        <td style="color:white;">'.$mail['message'].'</td>
+                        <td><form method="post">
+                                <input type="hidden" name="id" value="'.$mail['id'].'">
+                                <input type="hidden" name="name" value="'.$mail['name'].'"/>
+                                <input type="hidden" name="email" value="'.$mail['email'].'"/>
+                                <input type="hidden" name="massage" value="'.$mail['message'].'"/>
+                                <button type="submit" name="add" value="delete">Отправить еще раз</button>
+                                <button type="submit" name="delete" value="delete">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                ';
+        }
+        ?>
+    </table>
 </section>

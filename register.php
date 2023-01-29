@@ -3,7 +3,8 @@
 $title = 'register';
 require 'src/components/header/header.php';
 require 'src/components/footer/footer.php';
-
+$success = null;
+$error = null;
 session_status() === PHP_SESSION_ACTIVE ? null : session_start();
 include('config.php');
 if (isset($_POST['register'])) {
@@ -16,7 +17,7 @@ if (isset($_POST['register'])) {
     $query->bindParam("email", $email, PDO::PARAM_STR);
     $query->execute();
     if ($query->rowCount() > 0) {
-        echo '<p class="error">Этот адрес уже зарегистрирован!</  p>';
+        $error = 'Этот адрес уже зарегистрирован!';
     }
     if ($query->rowCount() == 0) {
         $query = $connection->prepare("INSERT INTO users(username,password,email,isAdmin) VALUES (:username,:password_hash,:email,:isAdmin)");
@@ -26,15 +27,29 @@ if (isset($_POST['register'])) {
         $query->bindParam("isAdmin", $isAdmin, PDO::PARAM_BOOL);
         $result = $query->execute();
         if ($result) {
-            echo '<p class="success">Регистрация прошла успешно!</p>';
+            $success = 'Регистрация прошла успешно!';
         } else {
-            echo '<p class="error">Неверные данные!</p>';
+            $error = 'Неверные данные!';
         }
     }
 }
 ?>
 
-<section class="section" style="padding-bottom: 50px">
+<section class="section" style="
+    padding-bottom: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    background-color: #333;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;">
+    <p style="color: forestgreen"><?php echo $success ?></p>
+    <p style="color: red"><?php echo $error ?></p>
     <form method="post" action="" name="signup-form" style="flex-direction: column; display: flex; justify-content: center; align-items: center">
         <div class="form-element" style="display: flex; flex-direction: column; justify-content: center;align-items: center">
             <label>Username</label>
